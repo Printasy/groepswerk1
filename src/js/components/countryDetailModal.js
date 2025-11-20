@@ -73,6 +73,7 @@ export async function showCountryDetail(country, isFavorite) {
         const [lat, lng] = country.latlng;
         alertBox.classList.add("d-none");
         focusCountry(lat, lng, country.name.common);
+
     } else {
         alertBox.classList.remove("d-none");
         alertBox.textContent = "Geen locatiegegevens beschikbaar voor dit land.";

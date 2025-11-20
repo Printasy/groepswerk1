@@ -28,3 +28,14 @@ export function focusCountry(lat, lng, name) {
     marker = L.marker([lat, lng]).addTo(map);
     marker.bindPopup(name).openPopup();
 }
+
+
+
+
+export function refreshMap() {
+    if (map) {
+        setTimeout(() => {
+            map.invalidateSize();
+        }, 200);
+    }
+}
