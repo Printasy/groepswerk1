@@ -85,14 +85,25 @@ function handleFavoriteToggleFromModal(country) {
     toggleFavorite(country);
 }
 function toggleFavorite(country) {
-    // TODO:
-    // - key bepalen (bijv. country.cca3)
-    // - indien al aanwezig in favorites: verwijderen
-    // - anders: toevoegen (met minimaal name, region, cca3)
-    // saveFavorites(favorites);
+    const exists = favorites.some(f => f.cca3 === country.cca3);
+
+    if (exists) {
+        favorites = favorites.filter(f => f.cca3 !== country.cca3);
+    } else {
+        favorites.push({
+            name: country.name.common,
+            region: country.region,
+            cca3: country.cca3,
+            population: country.population
+        });
+    }
+
+    saveFavorites(favorites);
     renderFavorites();
+    applyFilters();   // لتحديث الأزرار في القائمة
     updateStats();
 }
+
 function isFavorite(country) {
     const key = country.cca3;
     return favorites.some((fav) => fav.cca3 === key);
