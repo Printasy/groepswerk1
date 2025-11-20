@@ -1,6 +1,6 @@
 import * as bootstrap from "bootstrap";
 import { clearElement, createElement } from "../utils/dom.js";
-import { focusCountry } from "../services/mapService.js";
+import { focusCountry, refreshMap } from "../services/mapService.js";
 import { fetchRateToEuro } from "../services/statsService.js";
 
 let modalInstance = null;
@@ -73,28 +73,29 @@ export async function showCountryDetail(country, isFavorite) {
         const [lat, lng] = country.latlng;
         alertBox.classList.add("d-none");
         focusCountry(lat, lng, country.name.common);
-
     } else {
         alertBox.classList.remove("d-none");
-        alertBox.textContent = "Geen locatiegegevens beschikbaar voor dit land.";
+        alertBox.textContent = "Geen locatiegegevens beschikbaar.";
         focusCountry(null, null, null);
     }
 
     if (currencyCode !== "Onbekend") {
         try {
             const rate = await fetchRateToEuro(currencyCode);
-            if (rate) {
+
+            if (rate === "NOT_SUPPORTED") {
                 currencyInfo.appendChild(
-                    createElement("p", "text-success", `1 ${currencyCode} = ${rate.toFixed(3)} EUR`)
+                    createElement("p", "text-danger", "Wisselkoers niet beschikbaar voor deze valuta.")
                 );
             } else {
                 currencyInfo.appendChild(
-                    createElement("p", "text-danger", "Wisselkoers niet beschikbaar.")
+                    createElement("p", "text-success", `1 ${currencyCode} = ${rate.toFixed(3)} EUR`)
                 );
             }
+
         } catch {
             currencyInfo.appendChild(
-                createElement("p", "text-danger", "Er is een fout opgetreden bij het ophalen van de wisselkoers.")
+                createElement("p", "text-danger", "Wisselkoers niet beschikbaar.")
             );
         }
     }
@@ -110,4 +111,5 @@ export async function showCountryDetail(country, isFavorite) {
     }
 
     modalInstance.show();
+    refreshMap();
 }

@@ -29,13 +29,9 @@ export function focusCountry(lat, lng, name) {
     marker.bindPopup(name).openPopup();
 }
 
-
-
-
 export function refreshMap() {
-    if (map) {
-        setTimeout(() => {
-            map.invalidateSize();
-        }, 200);
-    }
+    if (!map) return;
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 300);
 }
