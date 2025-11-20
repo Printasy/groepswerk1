@@ -14,7 +14,7 @@ export function renderCountryList({ countries, favorites, onCountryClick, onFavo
     if (!container) return;
 
     clearElement(container);
-
+    //S
     // Geen landen gevonden
     if (!countries || countries.length === 0) {
         const empty = createElement(
