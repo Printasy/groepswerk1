@@ -1,5 +1,73 @@
-node_modules
-dist
-.idea
-.vscode
+# -------------------------
+# Node (algemeen)
+# -------------------------
+/node_modules/
+
+# Eventuele build-output
+/dist/
+/build/
+/public/build/
+/public/hot
+
+# Vite tooling
+.vite
+.vite-inspect
+
+# Caches
+.eslintcache
+.stylelintcache
+
+# -------------------------
+# VS Code
+# -------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+
+.history/
+*.code-workspace
+
+# -------------------------
+# PhpStorm / JetBrains
+# -------------------------
+.idea/*
+!.idea/icon.svg
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
+!.idea/codeStyles/
+
+*.iws
+*.iml
+*.ipr
+
+# -------------------------
+# OS / System files
+# -------------------------
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.fuse_hidden*
+.Trash-*
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+*.log.*
+
+# -------------------------
+# Environment
+# -------------------------
+.env
+.env.*
+!.env.example
